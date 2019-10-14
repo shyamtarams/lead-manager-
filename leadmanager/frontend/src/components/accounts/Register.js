@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../actions/auth";
-
 import { createMessage } from "../../actions/messages";
 
 export class Register extends Component {
@@ -33,20 +31,6 @@ export class Register extends Component {
       };
       this.props.register(newUser);
     }
-
-    // console.log("submit");
-
-    // const { username, email, password, password2 } = this.state;
-    // if (password !== password2) {
-    //   this.props.createMessage({ passwordNotMatch: "password missmatch" });
-    // } else {
-    //   const newUser = {
-    //     username,
-    //     password,
-    //     email
-    //   };
-    //   this.props.register(newUser);
-    // }
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -124,5 +108,3 @@ export default connect(
   mapStateToProps,
   { register, createMessage }
 )(Register);
-
-// export default Register;

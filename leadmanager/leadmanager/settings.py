@@ -44,13 +44,18 @@ INSTALLED_APPS = [
     'accounts',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHETICAION_CLASSES':
-    ('knox.auth.TokenAuthentication',),
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAdminUser',
-    # ),
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHETICAION_CLASSES':
+#     ('knox.auth.TokenAuthentication',),
+#     # 'DEFAULT_PERMISSION_CLASSES': (
+#     #     'rest_framework.permissions.IsAdminUser',
+#     # ),
 
+# }
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
 }
 
 # REST_FRAMEWORK = {

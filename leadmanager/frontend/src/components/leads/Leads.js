@@ -31,16 +31,17 @@ export class Leads extends Component {
           <tbody>
             {this.props.leads.map(lead => (
               <tr key={lead.id}>
-                <td> {lead.id}</td>
-                <td> {lead.name}</td>
-                <td> {lead.email}</td>
-                <td> {lead.message}</td>
+                <td>{lead.id}</td>
+                <td>{lead.name}</td>
+                <td>{lead.email}</td>
+                <td>{lead.message}</td>
                 <td>
                   <button
                     onClick={this.props.deleteLead.bind(this, lead.id)}
-                    className="btn btn-danger btn-sm "
+                    className="btn btn-danger btn-sm"
                   >
-                    Dlete
+                    {" "}
+                    Delete
                   </button>
                 </td>
               </tr>
@@ -51,6 +52,7 @@ export class Leads extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   leads: state.leads.leads
 });

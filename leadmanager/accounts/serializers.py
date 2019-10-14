@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
-# User Serializer
+# user
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email')
 
-# Register
+# reg
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -25,7 +25,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         return user
 
-# Login
+# log
 
 
 class LoginSerializer(serializers.Serializer):

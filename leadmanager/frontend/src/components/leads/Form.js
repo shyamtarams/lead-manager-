@@ -9,9 +9,11 @@ export class Form extends Component {
     email: "",
     message: ""
   };
+
   static propTypes = {
     addLead: PropTypes.func.isRequired
   };
+
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = e => {
@@ -28,10 +30,9 @@ export class Form extends Component {
 
   render() {
     const { name, email, message } = this.state;
-
     return (
       <div className="card card-body mt-4 mb-4">
-        <h2> Add Lead</h2>
+        <h2>Add Lead</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Name</label>
@@ -47,7 +48,7 @@ export class Form extends Component {
             <label>Email</label>
             <input
               className="form-control"
-              type="text"
+              type="email"
               name="email"
               onChange={this.onChange}
               value={email}
@@ -55,7 +56,7 @@ export class Form extends Component {
           </div>
           <div className="form-group">
             <label>Message</label>
-            <input
+            <textarea
               className="form-control"
               type="text"
               name="message"
