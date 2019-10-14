@@ -15,26 +15,26 @@ export class Register extends Component {
     password2: ""
   };
 
-  // static propTypes = {
-  //   register: PropTypes.func.isRequired,
-  //   isAuthenticated: PropTypes.bool
-  // };
+  static propTypes = {
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+  };
 
   onSubmit = e => {
     e.preventDefault();
-    // const { username, email, password, password2 } = this.state;
-    // if (password !== password2) {
-    //   this.props.createMessage({ passwordNotMatch: "Passwords do not match" });
-    // } else {
-    //   const newUser = {
-    //     username,
-    //     password,
-    //     email
-    //   };
-    //   this.props.register(newUser);
-    // }
+    const { username, email, password, password2 } = this.state;
+    if (password !== password2) {
+      this.props.createMessage({ passwordNotMatch: "Passwords do not match" });
+    } else {
+      const newUser = {
+        username,
+        password,
+        email
+      };
+      this.props.register(newUser);
+    }
 
-    console.log("submit");
+    // console.log("submit");
 
     // const { username, email, password, password2 } = this.state;
     // if (password !== password2) {
@@ -116,13 +116,13 @@ export class Register extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   isAuthenticated: state.auth.isAuthenticated
-// });
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-// export default connect(
-//   mapStateToProps,
-//   { register, createMessage }
-// )(Register);
+export default connect(
+  mapStateToProps,
+  { register, createMessage }
+)(Register);
 
-export default Register;
+// export default Register;

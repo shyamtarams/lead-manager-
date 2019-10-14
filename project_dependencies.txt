@@ -1,0 +1,33 @@
+pip3 install pipenv
+
+pipenv shell
+
+
+pip install django djangorestframework django-rest-knox 
+
+npm init -y
+
+npm i -D webpack webpack-cli
+
+npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
+
+npm i react react-dom prop-types
+
+npm install axios
+
+npm install --save react-alert
+
+npm install --save react-alert react-alert-template-basic
+
+
+npm install --save react-router-dom
+
+npm install --save redux-devtools-extension
+
+npm install --save redux redux-thunk
+
+npm i --save react-router
+
+#npm install @types/react-transition-group
+
+npm install react-transition-group --save
