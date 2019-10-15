@@ -1,26 +1,33 @@
 import axios from "axios";
-import { GET_LEADS, DELETE_LEAD, ADD_LEAD, GET_ERRORS } from "./types";
+import { create_Message, returnErrors } from "./messages";
+import { tokenConfig } from "./auth";
+
+import { GET_LEADS, DELETE_LEAD, ADD_LEAD } from "./types";
 
 //Get Leads
 
-export const getLeads = () => dispatch => {
+export const getLeads = () => (dispatch, getState) => {
   axios
-    .get("api/leads/")
+    .get("api/leads/", tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_LEADS,
         payload: res.data
       });
     })
-    .catch(err => console.log(err));
+    // .catch(err => console.log(err));
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 
 //Delete Lead
 
-export const deleteLead = id => dispatch => {
+export const deleteLead = id => (dispatch, getState) => {
   axios
-    .delete(`api/leads/${id}/`)
+    .delete(`api/leads/${id}/`, tokenConfig(getState))
     .then(res => {
+      dispatch(createMessage({ deleteLead: "Lead Deleted" }));
       dispatch({
         type: DELETE_LEAD,
         payload: id
@@ -31,23 +38,68 @@ export const deleteLead = id => dispatch => {
 
 //Add Lead
 
-export const addLead = lead => dispatch => {
+export const addLead = lead => (dispatch, getState) => {
   axios
-    .post("api/leads/", lead)
+    .post("api/leads/", lead, tokenConfig(getState))
     .then(res => {
+      dispatch(createMessage({ addLead: "Lead Added" }));
       dispatch({
         type: ADD_LEAD,
         payload: res.data
       });
     })
-    .catch(err => {
-      const errors = {
-        msg: err.response.data,
-        status: err.response.status
-      };
-      dispatch({
-        type: GET_ERRORS,
-        payload: errors
-      });
-    });
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
+
+// import axios from "axios";
+// import { createMessage, returnErrors } from "./messages";
+// import { tokenConfig } from "./auth";
+
+// import { GET_LEADS, DELETE_LEAD, ADD_LEAD } from "./types";
+
+// // GET LEADS
+// export const getLeads = () => (dispatch, getState) => {
+//   axios
+//     .get("/api/leads/", tokenConfig(getState))
+//     .then(res => {
+//       dispatch({
+//         type: GET_LEADS,
+//         payload: res.data
+//       });
+//     })
+//     .catch(err =>
+//       dispatch(returnErrors(err.response.data, err.response.status))
+//     );
+// };
+
+// // DELETE LEAD
+// export const deleteLead = id => (dispatch, getState) => {
+//   axios
+//     .delete(`/api/leads/${id}/`, tokenConfig(getState))
+//     .then(res => {
+//       dispatch(createMessage({ deleteLead: "Lead Deleted" }));
+//       dispatch({
+//         type: DELETE_LEAD,
+//         payload: id
+//       });
+//     })
+//     .catch(err => console.log(err));
+// };
+
+// // ADD LEAD
+// export const addLead = lead => (dispatch, getState) => {
+//   axios
+//     .post("/api/leads/", lead, tokenConfig(getState))
+//     .then(res => {
+//       dispatch(createMessage({ addLead: "Lead Added" }));
+//       dispatch({
+//         type: ADD_LEAD,
+//         payload: res.data
+//       });
+//     })
+//     .catch(err =>
+//       dispatch(returnErrors(err.response.data, err.response.status))
+//     );
+// };
